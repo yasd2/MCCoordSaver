@@ -5,6 +5,10 @@ Press F12, hit save and it saves the current players coordinates to a file!
 This plugin is useful for all developers, who want to spawn objects, vehicles or peds on certain positions.
 The savekey F12 and the filepath is configurable in the .ini.
 
+## Requirements
+- RageNativeUI - https://github.com/alexguirre/RAGENativeUI/releases
+- Ragepluginhook (included in the LSPDFR download) - https://www.lcpdfr.com/downloads/gta5mods/g17media/7792-lspd-first-response/
+
 Kind regards
 Yasd ;)
 
