@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8F7514F7-186A-4813-8C74-BE75FB646AB7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MCCoordSaver</RootNamespace>
+    <AssemblyName>MCCoordSaver</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <LangVersion>10.0</LangVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="RAGENativeUI">
+      <HintPath>D:\Program Files\Rockstar Games\Grand Theft Auto V\RAGENativeUI.dll</HintPath>
+    </Reference>
+    <Reference Include="RagePluginHook">
+      <HintPath>..\..\MCCallouts\packages\RagePluginHook.1.109.1\lib\net472\RagePluginHook.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Utils\Config.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="Utils\NativesMC.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Helper.cs" />
+    <Compile Include="CoordManager.cs" />
+    <Compile Include="Utils\Notifications.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>@echo off
+SET GTAPATH=D:\Program Files\Rockstar Games\Grand Theft Auto V
+SET DEBUG=C:\Users\Chris\Desktop\MCCoordSaver\MCCoordSaver\bin\Debug
+
+
+if exist "%25GTAPATH%25" (
+    copy /Y "%25DEBUG%25\\MCCoordSaver.dll" "%25GTAPATH%25\Plugins\\MCCoordSaver.dll"
+    copy /Y "%25DEBUG%25\\MCCoordSaver.pdb" "%25GTAPATH%25\Plugins\\MCCoordSaver.pdb"
+)
+
+</PostBuildEvent>
+  </PropertyGroup>
+</Project>
