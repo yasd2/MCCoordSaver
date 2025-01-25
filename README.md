@@ -12,7 +12,8 @@ The savekey F12 and the filepath is configurable in the .ini.
 ## Ingame Menu
 F12 to open (configurable)
 
-![grafik](https://github.com/user-attachments/assets/dc7ea476-81cd-4852-be9f-832496905790)
+![grafik](https://github.com/user-attachments/assets/2374c5ef-6510-4262-8612-074e2e602956)
+
 
 ## Give the coordinate a name
 ![grafik](https://github.com/user-attachments/assets/ea9d0523-6bf0-4f53-acbe-b7fcca63a5f3)
