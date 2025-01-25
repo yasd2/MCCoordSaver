@@ -1,26 +1,23 @@
-﻿using MCCoordSaver.Utils;
-using Rage;
+﻿using Rage;
 using System;
 using System.Windows.Forms;
-
-namespace MCCoordSaver;
 
 internal class Config
 {
     public static Keys SaveKey = Keys.F12;
 
-    public static string FilePath = @"plugins\MCCoordSaver\";
+    public static string FilePath = @"plugins/MCPositionTracker/";
 
     public static Boolean UseMenu = true;
 
 
     internal static void ReadINI()
     {
-        InitializationFile ini = new InitializationFile(@"plugins/MCCoordSaver.ini");
+        InitializationFile ini = new InitializationFile(@"plugins/MCPositionTracker.ini");
 
         if (!ini.Exists())
         {
-            Helper.Log("ERROR, .ini doesn't exist at plugins/MCCoordSaver.ini!");
+            Game.LogTrivial("[MC PositionTracker] ERROR: 'plugins/MCPositionTracker.ini' doesn't exist!");
             return;
         }
 

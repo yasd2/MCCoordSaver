@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\MCCallouts\packages\Costura.Fody.6.0.0\build\Costura.Fody.props" Condition="Exists('..\..\MCCallouts\packages\Costura.Fody.6.0.0\build\Costura.Fody.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -7,12 +8,14 @@
     <ProjectGuid>{8F7514F7-186A-4813-8C74-BE75FB646AB7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MCCoordSaver</RootNamespace>
-    <AssemblyName>MCCoordSaver</AssemblyName>
+    <RootNamespace>MCPositionTracker</RootNamespace>
+    <AssemblyName>MCPositionTracker</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <LangVersion>10.0</LangVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Costura, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
+      <HintPath>..\..\MCCallouts\packages\Costura.Fody.6.0.0\lib\netstandard2.0\Costura.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="RAGENativeUI">
       <HintPath>D:\Program Files\Rockstar Games\Grand Theft Auto V\RAGENativeUI.dll</HintPath>
@@ -53,22 +59,32 @@
     <Compile Include="Main.cs" />
     <Compile Include="Utils\NativesMC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utils\Helper.cs" />
-    <Compile Include="CoordManager.cs" />
-    <Compile Include="Utils\Notifications.cs" />
+    <Compile Include="PositionTracker.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>@echo off
 SET GTAPATH=D:\Program Files\Rockstar Games\Grand Theft Auto V
-SET DEBUG=C:\Users\Chris\Desktop\MCCoordSaver\MCCoordSaver\bin\Debug
-
+SET DEBUG=C:\Users\Chris\Desktop\MCPositionTracker\MCPositionTracker\bin\Debug
+SET FILE=MCPositionTracker
 
 if exist "%25GTAPATH%25" (
-    copy /Y "%25DEBUG%25\\MCCoordSaver.dll" "%25GTAPATH%25\Plugins\\MCCoordSaver.dll"
-    copy /Y "%25DEBUG%25\\MCCoordSaver.pdb" "%25GTAPATH%25\Plugins\\MCCoordSaver.pdb"
+    copy /Y "%25DEBUG%25\%25FILE%25.dll" "%25GTAPATH%25\Plugins\%25FILE%25.dll"
+    copy /Y "%25DEBUG%25\%25FILE%25.pdb" "%25GTAPATH%25\Plugins\%25FILE%25.pdb"
 )
-
 </PostBuildEvent>
   </PropertyGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Dieses Projekt verweist auf mindestens ein NuGet-Paket, das auf diesem Computer fehlt. Verwenden Sie die Wiederherstellung von NuGet-Paketen, um die fehlenden Dateien herunterzuladen. Weitere Informationen finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=322105". Die fehlende Datei ist "{0}".</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\MCCallouts\packages\Costura.Fody.6.0.0\build\Costura.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\MCCallouts\packages\Costura.Fody.6.0.0\build\Costura.Fody.props'))" />
+    <Error Condition="!Exists('..\..\MCCallouts\packages\Costura.Fody.6.0.0\build\Costura.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\MCCallouts\packages\Costura.Fody.6.0.0\build\Costura.Fody.targets'))" />
+    <Error Condition="!Exists('..\..\MCCallouts\packages\Fody.6.9.1\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\MCCallouts\packages\Fody.6.9.1\build\Fody.targets'))" />
+  </Target>
+  <Import Project="..\..\MCCallouts\packages\Costura.Fody.6.0.0\build\Costura.Fody.targets" Condition="Exists('..\..\MCCallouts\packages\Costura.Fody.6.0.0\build\Costura.Fody.targets')" />
+  <Import Project="..\..\MCCallouts\packages\Fody.6.9.1\build\Fody.targets" Condition="Exists('..\..\MCCallouts\packages\Fody.6.9.1\build\Fody.targets')" />
 </Project>
