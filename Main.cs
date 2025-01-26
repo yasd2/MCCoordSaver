@@ -9,6 +9,7 @@ using System.Reflection;
 
 public class EntryPoint
 {
+    // Gets automatically loaded on plugin load
     internal static void Main()
     {
         Game.DisplayNotification("~HC_9~~h~MC PositionTracker~h~~s~ " +
@@ -24,7 +25,15 @@ public class EntryPoint
     }
 
 
+    // Gets called on plugin unload and aborts all running gamefibers
     internal static void OnUnload(bool isTerminating)
-        => Game.LogTrivial(Assembly.GetExecutingAssembly().GetName().ToString() + " is unloaded.");
+    {
+        Game.DisplayNotification("~HC_9~~h~MC PositionTracker~h~~s~ " +
+            Assembly.GetExecutingAssembly().GetName().Version +
+            " ~r~is unloaded.");
+
+        Game.LogTrivial(Assembly.GetExecutingAssembly().GetName().Version + 
+            " is unloaded.");
+    }
 }
 

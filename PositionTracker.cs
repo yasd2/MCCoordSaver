@@ -121,14 +121,29 @@ internal class PositionTracker
         IsKeyboardActive = false;
         string inputResult = NativesMC.GET_ONSCREEN_KEYBOARD_RESULT();
 
-        string filePath = @$"{Config.FilePath}/Coords_{DateTime.Now:yy-MM-dd}.txt";
+        InitializationFile txt = new InitializationFile(@$"{Config.FilePath}/Coords_{DateTime.Now:yy-MM-dd}.txt");
 
-        if (!File.Exists(filePath)) File.WriteAllText(filePath, string.Empty);
+        if (!txt.Exists())
+        {
+            Game.LogTrivial("Creating new Coords file " + txt.FileName);
+            txt.Create();
+        }
 
-        using (var writer = new StreamWriter(filePath, true))
+        using (var writer = new StreamWriter(txt.FileName, true))
         {
             string timestamp = DateTime.Now.ToString("dd-MM-yy HH:mm:ss");
-            writer.WriteLine($"new Vector4(new Vector3({CurrentPlayerCoords.X}f, {CurrentPlayerCoords.Y}f, {CurrentPlayerCoords.Z}f), {CurrentPlayerCoords.W}f) | {timestamp} | {inputResult}");
+
+            string coord = Config.Style;
+            coord = coord.Replace(Config.XParameter, CurrentPlayerCoords.X.ToString());
+            coord = coord.Replace(Config.YParameter, CurrentPlayerCoords.Y.ToString());
+            coord = coord.Replace(Config.ZParameter, CurrentPlayerCoords.Z.ToString());
+            coord = coord.Replace(Config.WParameter, CurrentPlayerCoords.W.ToString());
+            coord = coord.Replace(Config.TimeParameter, timestamp);
+            coord = coord.Replace(Config.NameParameter, inputResult);
+            writer.WriteLine(coord);
+
+            Game.DisplayNotification($"~HC_9~{inputResult}~s~ {CurrentPlayerCoords} ~g~saved to file.");
+            Game.LogTrivial($"{inputResult} {CurrentPlayerCoords} saved to file.");
         }
     }
 
