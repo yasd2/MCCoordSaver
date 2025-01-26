@@ -22,7 +22,8 @@ F12 to open (configurable)
 ## Use the coord in your code
 Path is gtav/plugins/MCPositionTracker/Coords_currentDate.txt
 
-![grafik](https://github.com/user-attachments/assets/a6e28340-a43d-4104-9904-7f126f0439be)
+![grafik](https://github.com/user-attachments/assets/96f5548c-531a-45cd-bd00-4029ffc98fc2)
+
 
 
 ## Edit the Vector style!
