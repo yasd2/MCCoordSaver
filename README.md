@@ -25,5 +25,6 @@ Path is gtav/plugins/MCPositionTracker/Coords_currentDate.txt
 
 ## Edit the Vector style!
 You are able to edit the output, f.e. if you like a style like Vector3, Heading, or a Vector2
-![grafik](https://github.com/user-attachments/assets/dfe27b65-d881-4fe1-9f26-f9979117398a)
+![grafik](https://github.com/user-attachments/assets/c882329c-1b04-47cf-9fcb-06fb1b13eadd)
+
 
