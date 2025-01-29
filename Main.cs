@@ -2,7 +2,7 @@
 using System.Reflection;
 
 [assembly: Rage.Attributes.Plugin(
-    "MC Position Tracker", Description = "Save Vector Coordinates for developers!",
+    "Position Tracker", Description = "Save Vector Coordinates for developers!",
     Author = "Yasd", 
     SupportUrl = "https://discord.gg/utNranQJSr", 
     PrefersSingleInstance = true)]
@@ -12,7 +12,7 @@ public class EntryPoint
     // Gets automatically loaded on plugin load
     internal static void Main()
     {
-        Game.DisplayNotification("~HC_9~~h~MC PositionTracker~h~~s~ " +
+        Game.DisplayNotification("~HC_9~~h~PositionTracker~h~~s~ " +
             Assembly.GetExecutingAssembly().GetName().Version +
             " ~g~is loaded.");
 
@@ -28,7 +28,7 @@ public class EntryPoint
     // Gets called on plugin unload and aborts all running gamefibers
     internal static void OnUnload(bool isTerminating)
     {
-        Game.DisplayNotification("~HC_9~~h~MC PositionTracker~h~~s~ " +
+        Game.DisplayNotification("~HC_9~~h~PositionTracker~h~~s~ " +
             Assembly.GetExecutingAssembly().GetName().Version +
             " ~r~is unloaded.");
 

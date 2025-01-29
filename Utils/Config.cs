@@ -7,7 +7,7 @@ internal class Config
 {
     public static Keys SaveKey = Keys.F12;
 
-    public static string FilePath = @"plugins/MCPositionTracker/";
+    public static string FilePath = @"plugins/PositionTracker/";
 
     public static Boolean UseMenu = true;
 
@@ -32,11 +32,11 @@ internal class Config
             Directory.CreateDirectory(FilePath);
         }
 
-        InitializationFile ini = new InitializationFile(@"plugins/MCPositionTracker.ini");
+        InitializationFile ini = new InitializationFile(@"plugins/PositionTracker.ini");
 
         if (!ini.Exists())
         {
-            Game.LogTrivial("'plugins/MCPositionTracker.ini' doesn't exist, creating a new one.");
+            Game.LogTrivial("'plugins/PositionTracker.ini' doesn't exist, creating a new one.");
 
             ini.Create();
 
@@ -46,8 +46,8 @@ internal class Config
 SaveKey = F12
 
 [General]
-; here the coords-file is located, default: plugins\MCPositionTracker\
-FilePath = plugins\MCPositionTracker\
+; here the coords-file is located, default: plugins\PositionTracker\
+FilePath = plugins\PositionTracker\
 
 ; UseMenu = true -> means you have a RNUI menu, is default
 ; UseMenu = false -> skips the menu and directly jumps to the text box

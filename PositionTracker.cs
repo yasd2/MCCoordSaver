@@ -32,7 +32,7 @@ internal class PositionTracker
         if (!Config.UseMenu) { return; }
 
         MenuPool = new MenuPool();
-        MainMenu = new UIMenu("MC PositionTracker", "Save the players coordinates");
+        MainMenu = new UIMenu("PositionTracker", "Save the players coordinates");
 
         var savePositionItem = new UIMenuItem("Save Current Position", "Saves the player's current coordinates to a file");
         savePositionItem.Activated += (_, _) => StartCoordSaveProcess();
