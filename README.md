@@ -1,4 +1,4 @@
-# MC PositionTracker
+# PositionTracker
 
 ## What is this?
 Press F12, hit save and it saves the current players coordinates to a file!
@@ -20,7 +20,7 @@ F12 to open (configurable)
 
 
 ## Use the coord in your code
-Path is gtav/plugins/MCPositionTracker/Coords_currentDate.txt
+Path is gtav/plugins/PositionTracker/Coords_currentDate.txt
 
 ![grafik](https://github.com/user-attachments/assets/96f5548c-531a-45cd-bd00-4029ffc98fc2)
 
