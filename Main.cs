@@ -2,7 +2,7 @@
 using System.Reflection;
 
 [assembly: Rage.Attributes.Plugin(
-    "MC Position Tracker", Description = "Save Vector4 Coordinates for developers!",
+    "MC Position Tracker", Description = "Save Vector Coordinates for developers!",
     Author = "Yasd", 
     SupportUrl = "https://discord.gg/utNranQJSr", 
     PrefersSingleInstance = true)]

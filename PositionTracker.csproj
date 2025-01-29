@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\MCCallouts\packages\Costura.Fody.6.0.0\build\Costura.Fody.props" Condition="Exists('..\..\MCCallouts\packages\Costura.Fody.6.0.0\build\Costura.Fody.props')" />
+  <Import Project="..\..\packages\Costura.Fody.6.0.0\build\Costura.Fody.props" Condition="Exists('..\..\packages\Costura.Fody.6.0.0\build\Costura.Fody.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -8,8 +8,8 @@
     <ProjectGuid>{8F7514F7-186A-4813-8C74-BE75FB646AB7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MCPositionTracker</RootNamespace>
-    <AssemblyName>MCPositionTracker</AssemblyName>
+    <RootNamespace>PositionTracker</RootNamespace>
+    <AssemblyName>PositionTracker</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <LangVersion>10.0</LangVersion>
     <FileAlignment>512</FileAlignment>
@@ -36,7 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Costura, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
-      <HintPath>..\..\MCCallouts\packages\Costura.Fody.6.0.0\lib\netstandard2.0\Costura.dll</HintPath>
+      <HintPath>..\..\packages\Costura.Fody.6.0.0\lib\netstandard2.0\Costura.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="RAGENativeUI">
@@ -67,15 +67,45 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>@echo off
-SET GTAPATH=D:\Program Files\Rockstar Games\Grand Theft Auto V
-SET DEBUG=C:\Users\Chris\Desktop\MCPositionTracker\MCPositionTracker\bin\Debug
-SET FILE=MCPositionTracker
 
-if exist "%25GTAPATH%25" (
-    copy /Y "%25DEBUG%25\%25FILE%25.dll" "%25GTAPATH%25\Plugins\%25FILE%25.dll"
-    copy /Y "%25DEBUG%25\%25FILE%25.pdb" "%25GTAPATH%25\Plugins\%25FILE%25.pdb"
+SET "GTAPATH=D:\Program Files\Rockstar Games\Grand Theft Auto V"
+SET "DEBUG=C:\Users\Chris\Desktop\YasdsProjects\MCPositionTracker\PositionTracker\bin\Debug"
+SET "FILE=PositionTracker"
+
+REM Überprüfen, ob der GTA-Pfad existiert
+if exist "%GTAPATH%" (
+    echo GTA-Pfad gefunden: %GTAPATH%
+
+    REM Überprüfen, ob die Debug-Dateien existieren
+    if exist "%DEBUG%\%FILE%.dll" (
+        echo Kopiere %FILE%.dll...
+        copy /Y "%DEBUG%\%FILE%.dll" "%GTAPATH%\Plugins\%FILE%.dll"
+        if errorlevel 1 (
+            echo Fehler beim Kopieren von %FILE%.dll.
+        ) else (
+            echo %FILE%.dll erfolgreich kopiert.
+        )
+    ) else (
+        echo %FILE%.dll nicht gefunden in %DEBUG%.
+    )
+
+    if exist "%DEBUG%\%FILE%.pdb" (
+        echo Kopiere %FILE%.pdb...
+        copy /Y "%DEBUG%\%FILE%.pdb" "%GTAPATH%\Plugins\%FILE%.pdb"
+        if errorlevel 1 (
+            echo Fehler beim Kopieren von %FILE%.pdb.
+        ) else (
+            echo %FILE%.pdb erfolgreich kopiert.
+        )
+    ) else (
+        echo %FILE%.pdb nicht gefunden in %DEBUG%.
+    )
+
+) else (
+    echo GTA-Pfad nicht gefunden: %GTAPATH%
 )
-</PostBuildEvent>
+
+pause</PostBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -84,7 +114,12 @@ if exist "%25GTAPATH%25" (
     <Error Condition="!Exists('..\..\MCCallouts\packages\Costura.Fody.6.0.0\build\Costura.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\MCCallouts\packages\Costura.Fody.6.0.0\build\Costura.Fody.props'))" />
     <Error Condition="!Exists('..\..\MCCallouts\packages\Costura.Fody.6.0.0\build\Costura.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\MCCallouts\packages\Costura.Fody.6.0.0\build\Costura.Fody.targets'))" />
     <Error Condition="!Exists('..\..\MCCallouts\packages\Fody.6.9.1\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\MCCallouts\packages\Fody.6.9.1\build\Fody.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Costura.Fody.6.0.0\build\Costura.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Costura.Fody.6.0.0\build\Costura.Fody.props'))" />
+    <Error Condition="!Exists('..\..\packages\Costura.Fody.6.0.0\build\Costura.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Costura.Fody.6.0.0\build\Costura.Fody.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Fody.6.9.1\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Fody.6.9.1\build\Fody.targets'))" />
   </Target>
   <Import Project="..\..\MCCallouts\packages\Costura.Fody.6.0.0\build\Costura.Fody.targets" Condition="Exists('..\..\MCCallouts\packages\Costura.Fody.6.0.0\build\Costura.Fody.targets')" />
   <Import Project="..\..\MCCallouts\packages\Fody.6.9.1\build\Fody.targets" Condition="Exists('..\..\MCCallouts\packages\Fody.6.9.1\build\Fody.targets')" />
+  <Import Project="..\..\packages\Costura.Fody.6.0.0\build\Costura.Fody.targets" Condition="Exists('..\..\packages\Costura.Fody.6.0.0\build\Costura.Fody.targets')" />
+  <Import Project="..\..\packages\Fody.6.9.1\build\Fody.targets" Condition="Exists('..\..\packages\Fody.6.9.1\build\Fody.targets')" />
 </Project>
