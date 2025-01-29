@@ -29,8 +29,6 @@ internal class PositionTracker
     /// </summary>
     private static void CreateMainMenu()
     {
-        if (!Config.UseMenu) { return; }
-
         MenuPool = new MenuPool();
         MainMenu = new UIMenu("PositionTracker", "Save the players coordinates");
 
@@ -43,7 +41,7 @@ internal class PositionTracker
 
         MainMenu.TitleStyle = MainMenu.TitleStyle with
         {
-            Font = TextFont.Monospace,
+            Font = TextFont.ChaletComprimeCologne,
             Color = Color.LightSeaGreen,
             DropShadow = true,
         };
@@ -61,10 +59,10 @@ internal class PositionTracker
     private static void StartProcessing()
     {
         // Menu processing
-        GameFiber.ExecuteNewWhile(
-            MenuPool.ProcessMenus, 
-            "MenuProcessor", 
-            () => Config.UseMenu);
+            GameFiber.ExecuteNewWhile(
+                MenuPool.ProcessMenus, 
+                "MenuProcessor", 
+                () => Config.UseMenu);
 
 
         // Toggle RNUI menu // and open text box

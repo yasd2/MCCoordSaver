@@ -69,40 +69,40 @@
     <PostBuildEvent>@echo off
 
 SET "GTAPATH=D:\Program Files\Rockstar Games\Grand Theft Auto V"
-SET "DEBUG=C:\Users\Chris\Desktop\YasdsProjects\MCPositionTracker\PositionTracker\bin\Debug"
+SET "DEBUG=C:\Users\Chris\Desktop\YasdsProjects\PositionTracker\PositionTracker\bin\Debug"
 SET "FILE=PositionTracker"
 
 REM Überprüfen, ob der GTA-Pfad existiert
-if exist "%GTAPATH%" (
-    echo GTA-Pfad gefunden: %GTAPATH%
+if exist "%25GTAPATH%25" (
+    echo GTA-Pfad gefunden: %25GTAPATH%25
 
     REM Überprüfen, ob die Debug-Dateien existieren
-    if exist "%DEBUG%\%FILE%.dll" (
-        echo Kopiere %FILE%.dll...
-        copy /Y "%DEBUG%\%FILE%.dll" "%GTAPATH%\Plugins\%FILE%.dll"
+    if exist "%25DEBUG%25\%25FILE%25.dll" (
+        echo Kopiere %25FILE%25.dll...
+        copy /Y "%25DEBUG%25\%25FILE%25.dll" "%25GTAPATH%25\Plugins\%25FILE%25.dll"
         if errorlevel 1 (
-            echo Fehler beim Kopieren von %FILE%.dll.
+            echo Fehler beim Kopieren von %25FILE%25.dll.
         ) else (
-            echo %FILE%.dll erfolgreich kopiert.
+            echo %25FILE%25.dll erfolgreich kopiert.
         )
     ) else (
-        echo %FILE%.dll nicht gefunden in %DEBUG%.
+        echo %25FILE%25.dll nicht gefunden in %25DEBUG%25.
     )
 
-    if exist "%DEBUG%\%FILE%.pdb" (
-        echo Kopiere %FILE%.pdb...
-        copy /Y "%DEBUG%\%FILE%.pdb" "%GTAPATH%\Plugins\%FILE%.pdb"
+    if exist "%25DEBUG%25\%25FILE%25.pdb" (
+        echo Kopiere %25FILE%25.pdb...
+        copy /Y "%25DEBUG%25\%25FILE%25.pdb" "%25GTAPATH%25\Plugins\%25FILE%25.pdb"
         if errorlevel 1 (
-            echo Fehler beim Kopieren von %FILE%.pdb.
+            echo Fehler beim Kopieren von %25FILE%25.pdb.
         ) else (
-            echo %FILE%.pdb erfolgreich kopiert.
+            echo %25FILE%25.pdb erfolgreich kopiert.
         )
     ) else (
-        echo %FILE%.pdb nicht gefunden in %DEBUG%.
+        echo %25FILE%25.pdb nicht gefunden in %25DEBUG%25.
     )
 
 ) else (
-    echo GTA-Pfad nicht gefunden: %GTAPATH%
+    echo GTA-Pfad nicht gefunden: %25GTAPATH%25
 )
 
 pause</PostBuildEvent>
