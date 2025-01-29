@@ -70,7 +70,7 @@
     <PostBuildEvent>@echo off
 
 SET "GTAPATH=D:\Program Files\Rockstar Games\Grand Theft Auto V"
-SET "DEBUG=C:\Users\Chris\Desktop\YasdsProjects\PositionTracker\PositionTracker\bin\Debug"
+SET "DEBUG=C:\Users\Chris\Desktop\YasdsProjects\PositionTracker\bin\Debug"
 SET "FILE=PositionTracker"
 
 REM Überprüfen, ob der GTA-Pfad existiert
