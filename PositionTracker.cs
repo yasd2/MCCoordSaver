@@ -93,7 +93,7 @@ internal class PositionTracker
     private static void OpenKeyboardForInput()
     {
         IsKeyboardActive = true;
-        CurrentPlayerCoords = new Vector4(Player.Position, Player.Heading);
+        CurrentPlayerCoords = new Vector4(Player.Position.X, Player.Position.Y, Player.Position.Z - 1f, Player.Heading);
 
         NativesMC.DISPLAY_ONSCREEN_KEYBOARD(0, "FMMC_KEY_TIP8", "", "", "", "", "", 40);
     }
